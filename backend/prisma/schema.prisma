@@ -33,6 +33,8 @@ model Patient {
   consultations      Consultation[]
   notifications      Notification[]
   permissions        PermissionMedecin[]
+  walletAddress      String?             @unique
+  privateKey         String?             @db.VarChar(255)
 
   @@map("patients")
 }
