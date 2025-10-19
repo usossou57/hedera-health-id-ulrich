@@ -1,0 +1,257 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id                 String              @id @default(cuid())
+  patientId          String              @unique
+  nom                String
+  prenom             String
+  dateNaissance      DateTime
+  telephone          String              @unique
+  email              String?             @unique
+  adresse            String?
+  ville              String?
+  groupeSanguin      String?
+  allergies          String[]
+  maladiesChroniques String[]
+  contactUrgence     String?
+  passwordHash       String
+  lastLogin          DateTime?
+  hederaAccountId    String?             @unique
+  publicKey          String?
+  hopitalPrincipal   String
+  qrCodeHash         String?             @unique
+  isActive           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  consultations      Consultation[]
+  notifications      Notification[]
+  permissions        PermissionMedecin[]
+
+  @@map("patients")
+}
+
+model Medecin {
+  id              String              @id @default(cuid())
+  medecinId       String              @unique
+  nom             String
+  prenom          String
+  email           String              @unique
+  telephone       String
+  specialite      String
+  numeroOrdre     String              @unique
+  hopitalId       String
+  service         String
+  passwordHash    String
+  isActive        Boolean             @default(true)
+  lastLogin       DateTime?
+  hederaAccountId String?             @unique
+  publicKey       String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  consultations   Consultation[]
+  hopital         Hopital             @relation(fields: [hopitalId], references: [id])
+  permissions     PermissionMedecin[]
+
+  @@map("medecins")
+}
+
+model Hopital {
+  id            String          @id @default(cuid())
+  code          String          @unique
+  nom           String
+  ville         String
+  adresse       String
+  telephone     String
+  email         String
+  directeur     String?
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  consultations Consultation[]
+  admins        HospitalAdmin[]
+  medecins      Medecin[]
+
+  @@map("hopitaux")
+}
+
+model HospitalAdmin {
+  id           String    @id @default(cuid())
+  adminId      String    @unique
+  nom          String
+  prenom       String
+  email        String    @unique
+  telephone    String
+  passwordHash String
+  isActive     Boolean   @default(true)
+  lastLogin    DateTime?
+  hopitalId    String
+  role         String    @default("admin")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  hopital      Hopital   @relation(fields: [hopitalId], references: [id])
+
+  @@map("hospital_admins")
+}
+
+model Consultation {
+  id                String             @id @default(cuid())
+  consultationId    String             @unique
+  patientId         String
+  medecinId         String
+  hopitalId         String
+  dateConsultation  DateTime
+  type              String
+  motif             String
+  diagnostic        String?
+  prescription      String?
+  examensPrescrits  String[]
+  poids             Float?
+  taille            Float?
+  tensionArterielle String?
+  temperature       Float?
+  pouls             Int?
+  statut            ConsultationStatut @default(PROGRAMMEE)
+  notes             String?
+  hederaTxId        String?            @unique
+  hcsMessageId      String?            @unique
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  hopital           Hopital            @relation(fields: [hopitalId], references: [id])
+  medecin           Medecin            @relation(fields: [medecinId], references: [id])
+  patient           Patient            @relation(fields: [patientId], references: [id])
+
+  @@map("consultations")
+}
+
+model PermissionMedecin {
+  id               String           @id @default(cuid())
+  patientId        String
+  medecinId        String
+  statut           PermissionStatut @default(EN_ATTENTE)
+  dateAutorisation DateTime?
+  dateExpiration   DateTime?
+  typeAcces        TypeAcces        @default(LECTURE)
+  hederaTokenId    String?          @unique
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  medecin          Medecin          @relation(fields: [medecinId], references: [id])
+  patient          Patient          @relation(fields: [patientId], references: [id])
+
+  @@unique([patientId, medecinId])
+  @@map("permissions_medecins")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  patientId String?
+  type      TypeNotification
+  titre     String
+  message   String
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  patient   Patient?         @relation(fields: [patientId], references: [id])
+
+  @@map("notifications")
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String
+  entityType String
+  entityId   String
+  userId     String
+  userType   String
+  oldValues  Json?
+  newValues  Json?
+  ipAddress  String?
+  userAgent  String?
+  hederaTxId String?
+  createdAt  DateTime @default(now())
+
+  @@map("audit_logs")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  sessionId String   @unique
+  userId    String
+  userType  String
+  data      Json
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sessions")
+}
+
+model Statistique {
+  id                 String   @id @default(cuid())
+  periode            String
+  date               DateTime
+  patientsActifs     Int      @default(0)
+  consultationsTotal Int      @default(0)
+  medecinsActifs     Int      @default(0)
+  economiesFCFA      Float    @default(0)
+  tempsEconomise     Int      @default(0)
+  adoptionSysteme    Float    @default(0)
+  medecinsConnectes  Float    @default(0)
+  patientsInscrits   Float    @default(0)
+  satisfaction       Float    @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([periode, date])
+  @@map("statistiques")
+}
+
+model ActiviteRecente {
+  id          String   @id @default(cuid())
+  type        String
+  titre       String
+  description String?
+  count       Int?
+  userId      String?
+  statut      String   @default("actif")
+  createdAt   DateTime @default(now())
+
+  @@map("activites_recentes")
+}
+
+enum ConsultationStatut {
+  PROGRAMMEE
+  EN_COURS
+  TERMINEE
+  ANNULEE
+  REPORTEE
+}
+
+enum PermissionStatut {
+  EN_ATTENTE
+  ACTIVE
+  SUSPENDUE
+  REVOQUEE
+  EXPIREE
+}
+
+enum TypeAcces {
+  LECTURE
+  ECRITURE
+  COMPLET
+}
+
+enum TypeNotification {
+  CONSULTATION_PROGRAMMEE
+  CONSULTATION_ANNULEE
+  PERMISSION_DEMANDEE
+  PERMISSION_ACCORDEE
+  PERMISSION_REVOQUEE
+  RAPPEL_RDV
+  RESULTAT_EXAMEN
+}

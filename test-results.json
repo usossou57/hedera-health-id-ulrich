@@ -1,0 +1,247 @@
+{
+  "timestamp": "2025-09-10T12:02:30.565Z",
+  "summary": {
+    "total": 22,
+    "passed": 21,
+    "failed": 1,
+    "successRate": "95.5"
+  },
+  "results": [
+    {
+      "timestamp": "2025-09-10T12:02:23.020Z",
+      "type": "info",
+      "message": "🚀 Starting Hedera Health ID functionality tests..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.022Z",
+      "type": "info",
+      "message": null
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.023Z",
+      "type": "info",
+      "message": "Testing file structure..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.023Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/pages/PatientDashboard.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.023Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/pages/PatientLogin.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.023Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/pages/HospitalDashboard.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.024Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/components/patient/PatientDocuments.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.024Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/components/hospital/ConsultationManagement.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.024Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/services/fileStorageService.ts"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.024Z",
+      "type": "success",
+      "message": "✅ Found frontend/src/components/StorageTest.tsx"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.025Z",
+      "type": "success",
+      "message": "✅ Found backend/src/index.ts"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.025Z",
+      "type": "success",
+      "message": "✅ Found backend/src/config/app.config.ts"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.025Z",
+      "type": "success",
+      "message": "✅ All required files present"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.026Z",
+      "type": "info",
+      "message": "Testing Local frontend access..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.063Z",
+      "type": "success",
+      "message": "✅ Local frontend accessible"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.063Z",
+      "type": "success",
+      "message": "✅ Local appears to be a React application"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.064Z",
+      "type": "info",
+      "message": "Testing Local backend health..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.748Z",
+      "type": "success",
+      "message": "✅ Local health check passed"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:23.749Z",
+      "type": "info",
+      "message": "Database status: Connected"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:26.011Z",
+      "type": "success",
+      "message": "✅ Local API test passed"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:26.012Z",
+      "type": "info",
+      "message": "Database stats: 3 patients, 3 doctors"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:26.452Z",
+      "type": "success",
+      "message": "✅ Local hospitals endpoint working"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:26.452Z",
+      "type": "info",
+      "message": "Found 3 hospitals"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:26.453Z",
+      "type": "info",
+      "message": "Testing Deployed frontend access..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:27.632Z",
+      "type": "success",
+      "message": "✅ Deployed frontend accessible"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:27.633Z",
+      "type": "success",
+      "message": "✅ Deployed appears to be a React application"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:27.633Z",
+      "type": "info",
+      "message": "Testing Deployed backend health..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:28.605Z",
+      "type": "success",
+      "message": "✅ Deployed health check passed"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:28.605Z",
+      "type": "info",
+      "message": "Database status: Connected"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:29.106Z",
+      "type": "success",
+      "message": "✅ Deployed API test passed"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:29.106Z",
+      "type": "info",
+      "message": "Database stats: 3 patients, 3 doctors"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:29.588Z",
+      "type": "success",
+      "message": "✅ Deployed hospitals endpoint working"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:29.589Z",
+      "type": "info",
+      "message": "Found 3 hospitals"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:29.589Z",
+      "type": "info",
+      "message": "Testing CORS configuration..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.069Z",
+      "type": "success",
+      "message": "✅ CORS configuration working"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.069Z",
+      "type": "info",
+      "message": "Testing patient registration flow..."
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.562Z",
+      "type": "error",
+      "message": "❌ Patient registration test failed: Request failed with status code 404"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.563Z",
+      "type": "info",
+      "message": null
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.563Z",
+      "type": "info",
+      "message": "📊 TEST SUMMARY"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.563Z",
+      "type": "info",
+      "message": null
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.564Z",
+      "type": "info",
+      "message": "Total tests: 22"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.564Z",
+      "type": "info",
+      "message": "Passed: 21"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.564Z",
+      "type": "info",
+      "message": "Failed: 1"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.564Z",
+      "type": "info",
+      "message": "Success rate: 95.5%"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.564Z",
+      "type": "info",
+      "message": "\n❌ ERRORS FOUND:"
+    },
+    {
+      "timestamp": "2025-09-10T12:02:30.565Z",
+      "type": "info",
+      "message": "  - Patient Registration: Request failed with status code 404"
+    }
+  ],
+  "errors": [
+    {
+      "test": "Patient Registration",
+      "error": "Request failed with status code 404"
+    }
+  ]
+}

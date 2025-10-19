@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PWA et optimisations mobiles */
+:root {
+  --vh: 1vh;
+  --animation-duration: 0.3s;
+}
+
+/* Optimisations pour les appareils mobiles */
+@media (max-width: 768px) {
+  /* Utiliser la hauteur de viewport calculée */
+  .min-h-screen {
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+
+  /* Améliorer les performances de scroll */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimiser les transitions */
+  * {
+    transition-duration: var(--animation-duration);
+  }
+
+  /* Améliorer la lisibilité sur mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optimiser les boutons pour le touch */
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Améliorer les zones de tap */
+  a, button {
+    position: relative;
+  }
+
+  a::after, button::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+  }
+}
+
+/* Optimisations pour l'orientation paysage sur mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .mobile-optimizer[data-orientation="landscape"] {
+    /* Ajustements spécifiques au mode paysage */
+  }
+}
+
+/* Styles pour PWA en mode standalone */
+@media (display-mode: standalone) {
+  body {
+    /* Masquer la barre d'adresse fantôme */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Ajuster l'interface pour le mode app */
+  .pwa-standalone {
+    /* Styles spécifiques au mode standalone */
+  }
+}
+
+/* Animations optimisées pour mobile */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimisations pour les écrans haute densité */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimisations pour les écrans Retina */
+  .crisp-edges {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Styles pour les gestes tactiles */
+.touch-gesture {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Feedback visuel pour les interactions tactiles */
+.touch-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-feedback::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  pointer-events: none;
+}
+
+.touch-feedback:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Optimisations pour le mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Styles pour les notifications PWA */
+.pwa-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Styles pour le mode offline */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f59e0b;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.offline-indicator.show {
+  transform: translateY(0);
+}
+
+/* Améliorer les performances des listes longues */
+.virtual-scroll {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+/* Optimiser les images pour mobile */
+img {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+}
+
+/* Styles pour les composants USSD */
+.ussd-phone {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.ussd-screen {
+  font-family: 'Courier New', monospace;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-hedera-500 text-white px-4 py-2 rounded-lg hover:bg-hedera-600 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-medical-500 text-white px-4 py-2 rounded-lg hover:bg-medical-600 transition-colors;
+  }
+}

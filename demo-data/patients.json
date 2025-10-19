@@ -1,0 +1,22 @@
+[
+  {
+    "id": "BJ2025001",
+    "nom": "KOSSOU",
+    "prenom": "Adjoa",
+    "dateNaissance": "1990-05-12",
+    "telephone": "+22997123456",
+    "email": "adjoa.kossou@demo.bj",
+    "hopitalPrincipal": "CHU-MEL",
+    "groupeSanguin": "A+",
+    "allergies": ["Pénicilline"],
+    "consultations": [
+      {
+        "date": "2025-08-12",
+        "medecin": "Dr. ADJAHOUI",
+        "hopital": "CHU-MEL",
+        "diagnostic": "Grippe saisonnière",
+        "prescription": "Paracétamol 1g x3/jour"
+      }
+    ]
+  }
+]
